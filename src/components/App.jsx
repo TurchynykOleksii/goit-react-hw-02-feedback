@@ -7,6 +7,7 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    total: 0,
   };
 
   onClickGood = () => {
@@ -27,6 +28,18 @@ export class App extends Component {
     }));
   };
 
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    const result = good + neutral + bad;
+    return result;
+  };
+
+  getPositiveFeedbackPercentage = () => {
+    const percentage = (this.state.good / this.countTotalFeedback()) * 100;
+
+    return Math.round(percentage);
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
 
@@ -37,7 +50,13 @@ export class App extends Component {
           handleClickNeutral={this.onClickNeutral}
           handleClickBad={this.onClickBad}
         />
-        <Statistics goodState={good} neutralState={neutral} badState={bad} />
+        <Statistics
+          goodState={good}
+          neutralState={neutral}
+          badState={bad}
+          totalState={this.countTotalFeedback()}
+          positiveFeetback={this.getPositiveFeedbackPercentage()}
+        />
       </>
     );
   }
