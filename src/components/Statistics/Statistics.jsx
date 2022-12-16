@@ -12,7 +12,7 @@ export const Statistics = ({
         <li>Good: {goodState}</li>
         <li>Neutral: {neutralState}</li>
         <li>Bad: {badState}</li>
-        <li>Totala: {totalState}</li>
+        <li>Total: {totalState}</li>
         <li>
           Positive Feedback: {!positiveFeetback ? '0' : positiveFeetback}%
         </li>
