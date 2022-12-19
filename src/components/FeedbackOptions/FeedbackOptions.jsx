@@ -1,18 +1,20 @@
 import { Button } from '../Button';
 import { PropTypes } from 'prop-types';
 import css from './FeedbackOptions.module.css';
+import { nanoid } from 'nanoid';
 
-export const FeedbackOptions = ({
-  handleClickGood,
-  handleClickNeutral,
-  handleClickBad,
-}) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
       <div className={css.containerBtn}>
-        <Button title="good" handleState={handleClickGood} />
-        <Button title="neutral" handleState={handleClickNeutral} />
-        <Button title="bad" handleState={handleClickBad} />
+        {options.map(option => (
+          <Button
+            key={nanoid()}
+            title={option}
+            name={option}
+            handleState={onLeaveFeedback}
+          />
+        ))}
       </div>
     </>
   );
